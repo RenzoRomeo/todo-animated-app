@@ -5836,7 +5836,7 @@ react-is@^17.0.1:
 
 "react-native-checkbox-reanimated@https://github.com/RenzoRomeo/react-native-checkbox-reanimated":
   version "0.1.0"
-  resolved "https://github.com/RenzoRomeo/react-native-checkbox-reanimated#49038005def10abde46920a04c4aa0fcfed50226"
+  resolved "https://github.com/RenzoRomeo/react-native-checkbox-reanimated#ddff002d5a2ccb9c547f80fa0b9782627456f1d9"
 
 react-native-codegen@^0.0.6:
   version "0.0.6"

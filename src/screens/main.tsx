@@ -1,5 +1,4 @@
 import React, { useCallback, useState } from 'react';
-import { Pressable } from 'react-native';
 import { Text, Box, Center, VStack, useColorModeValue } from 'native-base';
 
 import ThemeToggle from '../components/theme-toggle';
