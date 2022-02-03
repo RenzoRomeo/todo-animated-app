@@ -23,7 +23,7 @@ const Sidebar = (props: DrawerContentComponentProps) => {
   }, [navigation]);
 
   const handlePressMenuMain = useCallback(() => {
-    navigation.navigate('Menu');
+    navigation.navigate('Main');
   }, [navigation]);
 
   const handlePressMenuAbout = useCallback(() => {
