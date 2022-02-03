@@ -1,3 +1,5 @@
 # todo-animated-app
 
-Simple todo app built with react native.
+Simple and smoothly animated todo app built with react native.
+
+TODO: Fix dark theme toggle on Android
