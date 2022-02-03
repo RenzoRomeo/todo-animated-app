@@ -22,7 +22,7 @@ interface TaskListProps {
   editingItemId: string | null;
   onToggleItem: (item: TaskItemData) => void;
   onChangeSubject: (item: TaskItemData, newSubject: string) => void;
-  onFinishedEditing: (item: TaskItemData) => void;
+  onFinishEditing: (item: TaskItemData) => void;
   onPressLabel: (item: TaskItemData) => void;
   onRemoveItem: (item: TaskItemData) => void;
 }
@@ -33,7 +33,6 @@ interface TaskItemProps
   isEditing: boolean;
   onToggleItem: (item: TaskItemData) => void;
   onChangeSubject: (item: TaskItemData, newSubject: string) => void;
-  onRemoveItem: (item: TaskItemData) => void;
   onFinishEditing: (item: TaskItemData) => void;
   onPressLabel: (item: TaskItemData) => void;
   onRemove: (item: TaskItemData) => void;
@@ -43,7 +42,7 @@ export const AnimatedTaskItem = (props: TaskItemProps) => {
   const {
     simultaneousHandlers,
     onChangeSubject,
-    onRemoveItem,
+    onRemove,
     onToggleItem,
     onPressLabel,
     onFinishEditing,
@@ -71,8 +70,8 @@ export const AnimatedTaskItem = (props: TaskItemProps) => {
   }, [data, onPressLabel]);
 
   const handleRemove = useCallback(() => {
-    onRemoveItem(data);
-  }, [data, onRemoveItem]);
+    onRemove(data);
+  }, [data, onRemove]);
 
   return (
     <StyledView
@@ -108,4 +107,36 @@ export const AnimatedTaskItem = (props: TaskItemProps) => {
   );
 };
 
-export default function TaskList(props: TaskListProps) {}
+export default function TaskList(props: TaskListProps) {
+  const {
+    data,
+    editingItemId,
+    onToggleItem,
+    onChangeSubject,
+    onFinishEditing,
+    onPressLabel,
+    onRemoveItem
+  } = props;
+
+  const refScrollView = useRef(null);
+
+  return (
+    <StyledScrollView ref={refScrollView} w="full">
+      <AnimatePresence>
+        {data.map(item => (
+          <AnimatedTaskItem
+            key={item.id}
+            data={item}
+            simultaneousHandlers={refScrollView}
+            isEditing={item.id == editingItemId}
+            onToggleItem={onToggleItem}
+            onChangeSubject={onChangeSubject}
+            onFinishEditing={onFinishEditing}
+            onPressLabel={onPressLabel}
+            onRemove={onRemoveItem}
+          />
+        ))}
+      </AnimatePresence>
+    </StyledScrollView>
+  );
+}
